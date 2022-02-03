@@ -15,9 +15,7 @@ Vagrant.configure(2) do |config|
     apt-get clean -y
 
     # dotfiles
-    cp -f /vagrant/.vimrc ~/
-    cp -f /vagrant/.bash_profile ~/
-    runuser -l vagrant -c "cp -f /vagrant/.vimrc ~/"
-    runuser -l vagrant -c "cp -f /vagrant/.bash_profile ~/"
+    cp -rf /vagrant/dotfiles/. ~/
+    runuser -l vagrant -c "cp -rf /vagrant/dotfiles/. ~/"
   SHELL
 end
