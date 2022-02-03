@@ -13,6 +13,7 @@ Vagrant.configure(2) do |config|
     xargs --arg-file=/vagrant/packages apt-get install -y
     apt-get autoremove -y
     apt-get clean -y
+    pip3 install cfbs cf-remote
 
     # dotfiles
     cp -rf /vagrant/dotfiles/. ~/
