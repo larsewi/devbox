@@ -11,9 +11,10 @@ Vagrant.configure(2) do |config|
     apt-get update
     apt-get upgrade -y
     xargs --arg-file=/vagrant/packages apt-get install -y
+    apt-get install -y python3 python3-pip
+    pip3 install cfbs cf-remote
     apt-get autoremove -y
     apt-get clean -y
-    pip3 install cfbs cf-remote
 
     # dotfiles
     cp -rf /vagrant/dotfiles/. ~/
@@ -26,9 +27,9 @@ Vagrant.configure(2) do |config|
     hub.vm.network :forwarded_port, guest: 443, host: 9002
   end
 
-  config.vm.define "client" do |client|
-    client.vm.hostname = "client"
-    client.vm.network "private_network", ip: "192.168.100.91"
+  config.vm.define "host" do |host|
+    host.vm.hostname = "host"
+    host.vm.network "private_network", ip: "192.168.100.91"
   end
 
 end
