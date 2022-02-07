@@ -2,8 +2,8 @@ Vagrant.configure(2) do |config|
   config.vm.box = 'ubuntu/focal64'
   config.vm.hostname = 'dev'
   config.vm.provider "virtualbox" do |v|
-    v.name = 'dev'
-    v.memory = 2048
+    v.cpus = 2
+    v.memory = 4096
   end
   config.vm.synced_folder '~/cfengine', '/cfengine'
   config.vm.provision "shell", inline: <<-SHELL
@@ -19,4 +19,16 @@ Vagrant.configure(2) do |config|
     cp -rf /vagrant/dotfiles/. ~/
     runuser -l vagrant -c "cp -rf /vagrant/dotfiles/. ~/"
   SHELL
+
+  config.vm.define "hub" do |hub|
+    hub.vm.hostname = "hub"
+    hub.vm.network "private_network", ip: "192.168.100.90"
+    hub.vm.network :forwarded_port, guest: 443, host: 9002
+  end
+
+  config.vm.define "client" do |client|
+    client.vm.hostname = "client"
+    client.vm.network "private_network", ip: "192.168.100.91"
+  end
+
 end
