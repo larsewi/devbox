@@ -23,13 +23,13 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "hub" do |hub|
     hub.vm.hostname = "hub"
-    hub.vm.network "private_network", ip: "192.168.100.90"
+    hub.vm.network "private_network", ip: "192.168.56.10"
     hub.vm.network :forwarded_port, guest: 443, host: 9002
   end
 
   config.vm.define "host" do |host|
     host.vm.hostname = "host"
-    host.vm.network "private_network", ip: "192.168.100.91"
+    host.vm.network "private_network", ip: "192.168.56.11"
   end
 
 end
