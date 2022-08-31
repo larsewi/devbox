@@ -5,21 +5,8 @@ Vagrant.configure(2) do |config|
     v.cpus = 2
     v.memory = 4096
   end
-  config.vm.synced_folder '~/cfengine', '/cfengine'
-  config.vm.provision "shell", inline: <<-SHELL
-    # packages
-    apt-get update
-    apt-get upgrade -y
-    xargs --arg-file=/vagrant/packages apt-get install -y
-    apt-get install -y python3 python3-pip
-    pip3 install cfbs cf-remote
-    apt-get autoremove -y
-    apt-get clean -y
-
-    # dotfiles
-    cp -rf /vagrant/dotfiles/. ~/
-    runuser -l vagrant -c "cp -rf /vagrant/dotfiles/. ~/"
-  SHELL
+  config.vm.synced_folder '~/ntech/', '/ntech/'
+  config.vm.provision "shell", path: "setup.sh"
 
   config.vm.define "hub" do |hub|
     hub.vm.hostname = "hub"
