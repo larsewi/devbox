@@ -12,6 +12,7 @@ chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
 chown vagrant /home/vagrant/.vimrc
 vim +PlugInstall +qall
+timedatectl set-timezone Europe/Oslo
 SCRIPT
 
 Vagrant.configure(2) do |config|
