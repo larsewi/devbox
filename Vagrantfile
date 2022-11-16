@@ -4,9 +4,9 @@ curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 sudo bash /tmp/nodesource_setup.sh
 apt-get update
 apt-get install -y --autoremove build-essential gdb automake autoconf libtool \
-    valgrind git net-tools libssl-dev libpcre3 libpcre3-dev bison flex \
-    libbison-dev libacl1 libacl1-dev libpq-dev lmdb-utils libdb-dev \
-    liblmdb-dev libpam0g-dev python3 python3-pip ccls vim nodejs tree
+    valgrind git net-tools libssl-dev libpcre3 libpcre3-dev bison flex nodejs \
+    libbison-dev libacl1 libacl1-dev libpq-dev lmdb-utils libdb-dev ccls tree \
+    liblmdb-dev libpam0g-dev python3 python3-pip vim
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
