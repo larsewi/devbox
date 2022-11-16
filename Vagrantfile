@@ -31,10 +31,15 @@ Vagrant.configure(2) do |config|
     hub.vm.provision "shell", inline: $script
   end
 
-  config.vm.define "host" do |host|
-    host.vm.box = 'ubuntu/jammy64'
-    host.vm.hostname = "host"
-    host.vm.network "private_network", ip: "192.168.56.11"
-    host.vm.provision "shell", inline: $script
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = 'ubuntu/jammy64'
+    ubuntu.vm.hostname = "ubuntu"
+    ubuntu.vm.network "private_network", ip: "192.168.56.11"
+  end
+
+  config.vm.define "windows" do |windows|
+    windows.vm.box = "gusztavvargadr/windows-10"
+    windows.vm.hostname = "windows"
+    windows.vm.network "private_network", ip: "192.168.56.12"
   end
 end
