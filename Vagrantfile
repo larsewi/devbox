@@ -1,7 +1,7 @@
 $script = <<-'SCRIPT'
-sudo add-apt-repository ppa:jonathonf/vim
+add-apt-repository ppa:jonathonf/vim
 curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
-sudo bash /tmp/nodesource_setup.sh
+bash /tmp/nodesource_setup.sh
 apt-get update
 apt-get install -y --autoremove build-essential gdb automake autoconf libtool \
     valgrind git net-tools libssl-dev libpcre3 libpcre3-dev bison flex nodejs \
