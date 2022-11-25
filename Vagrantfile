@@ -13,6 +13,7 @@ cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
 chown vagrant /home/vagrant/.vimrc
 vim +PlugInstall +qall
 timedatectl set-timezone Europe/Oslo
+echo "export PATH='$PATH:/home/vagrant/.local/bin'" >> ~/.bashrc
 SCRIPT
 
 Vagrant.configure(2) do |config|
