@@ -6,12 +6,12 @@ apt-get update
 apt-get install -y --autoremove build-essential gdb automake autoconf libtool \
     valgrind git net-tools libssl-dev libpcre3 libpcre3-dev bison flex nodejs \
     libbison-dev libacl1 libacl1-dev libpq-dev lmdb-utils libdb-dev ccls tree \
-    liblmdb-dev libpam0g-dev python3 python3-pip vim
+    liblmdb-dev libpam0g-dev python3 python3-pip vim libtool-bin
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
 chown vagrant /home/vagrant/.vimrc
-timedatectl set-timezone Europe/Oslo
+echo "timedatectl set-timezone Europe/Oslo" >> ~/.bashrc
 echo "export PATH='$PATH:/home/vagrant/.local/bin'" >> ~/.bashrc
 SCRIPT
 
