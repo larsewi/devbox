@@ -22,6 +22,7 @@ Vagrant.configure(2) do |config|
     v.gui = false
   end
   config.vm.synced_folder '~/ntech/', '/ntech/'
+  config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/Europe/Oslo /etc/localtime", run: "always"
 
   config.vm.define "hub" do |hub|
     hub.vm.box = 'ubuntu/jammy64'
