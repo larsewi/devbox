@@ -17,12 +17,19 @@ SCRIPT
 
 Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
-    v.cpus = 2
+    v.cpus = 4
     v.memory = 4096
     v.gui = false
   end
   config.vm.synced_folder '~/ntech/', '/ntech/'
-  config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/Europe/Oslo /etc/localtime", run: "always"
+
+  config.vm.provision "shell" do |s|
+      ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
+      s.inline = <<-SHELL
+        echo #{ssh_pub_key} >> /home/vagrant/.ssh/authorized_keys
+        echo #{ssh_pub_key} >> /root/.ssh/authorized_keys
+      SHELL
+    end
 
   config.vm.define "hub" do |hub|
     hub.vm.box = 'ubuntu/jammy64'
@@ -32,15 +39,9 @@ Vagrant.configure(2) do |config|
     hub.vm.provision "shell", inline: $script
   end
 
-  config.vm.define "ubuntu" do |ubuntu|
-    ubuntu.vm.box = 'ubuntu/jammy64'
-    ubuntu.vm.hostname = "ubuntu"
-    ubuntu.vm.network "private_network", ip: "192.168.56.11"
-  end
-
-  config.vm.define "windows" do |windows|
-    windows.vm.box = "gusztavvargadr/windows-10"
-    windows.vm.hostname = "windows"
-    windows.vm.network "private_network", ip: "192.168.56.12"
+  config.vm.define "client" do |client|
+    client.vm.box = 'ubuntu/jammy64'
+    client.vm.hostname = "client"
+    client.vm.network "private_network", ip: "192.168.56.11"
   end
 end
