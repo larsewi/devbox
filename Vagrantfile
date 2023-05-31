@@ -1,12 +1,17 @@
 $script = <<-'SCRIPT'
 add-apt-repository ppa:jonathonf/vim
+add-apt-repository -y ppa:ondrej/php
 curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 bash /tmp/nodesource_setup.sh
 apt-get update
-apt-get install -y --autoremove build-essential gdb automake autoconf libtool \
+apt-get install -y  --force-yes --autoremove build-essential gdb automake \
     valgrind git net-tools libssl-dev libpcre3 libpcre3-dev bison flex nodejs \
     libbison-dev libacl1 libacl1-dev libpq-dev lmdb-utils libdb-dev ccls tree \
-    liblmdb-dev libpam0g-dev python3 python3-pip vim libtool-bin
+    liblmdb-dev libpam0g-dev python3 python3-pip vim libtool-bin php7.3-dev \
+    autoconf libtool
+
+apt-get update
+apt-get install -y --force-yes php7.3-dev
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
