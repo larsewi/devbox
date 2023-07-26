@@ -9,7 +9,7 @@ apt-get install -y --autoremove autoconf libtool build-essential gdb automake \
     libbison-dev libacl1 libacl1-dev libpq-dev lmdb-utils libdb-dev ccls tree \
     liblmdb-dev libpam0g-dev python3 python3-pip vim libtool-bin php7.3-dev
 apt-get update
-apt-get install -y --force-yes php7.3-dev
+apt-get install -y --allow-unauthenticated --allow-downgrades --allow-remove-essential --allow-change-held-package php7.3-dev
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
