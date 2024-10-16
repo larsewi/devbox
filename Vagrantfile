@@ -1,10 +1,7 @@
 $script = <<-'SCRIPT'
 apt-get update
-apt-get install -y --autoremove autoconf libtool build-essential gdb automake \
-    valgrind git net-tools libssl-dev libpcre3 libpcre3-dev bison flex nodejs \
-    libbison-dev libacl1 libacl1-dev libpq-dev lmdb-utils libdb-dev tree vim \
-    liblmdb-dev libpam0g-dev python3 python3-pip libtool-bin php7.3-dev check libcjson-dev clang-format
-apt-get install -y php7.3-dev
+apt-get install -y --autoremove autoconf libtool build-essential \
+  gdb automake valgrind git liblmdb-dev libpcre2-dev libpam0g-dev
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
@@ -14,10 +11,10 @@ SCRIPT
 Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.cpus = 4
-    v.memory = 4096
+    v.memory = 2048
     v.gui = false
   end
-  config.vm.synced_folder '~/ntech/', '/ntech/'
+  config.vm.synced_folder '~/ntech/cfengine', '/ntech/cfengine'
 
   config.vm.provision "shell" do |s|
       ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
