@@ -1,7 +1,8 @@
 $script = <<-'SCRIPT'
 apt-get update
 apt-get install -y --autoremove autoconf libtool build-essential \
-  gdb automake valgrind git liblmdb-dev libpcre2-dev libpam0g-dev
+  gdb automake valgrind git liblmdb-dev libpcre2-dev libpam0g-dev \
+  flex bison
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
