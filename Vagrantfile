@@ -12,7 +12,7 @@ SCRIPT
 Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.cpus = 4
-    v.memory = 2048
+    v.memory = 4096
     v.gui = false
   end
   config.vm.synced_folder '~/ntech/cfengine', '/ntech/cfengine'
