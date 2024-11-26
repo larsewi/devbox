@@ -2,11 +2,14 @@ $script = <<-'SCRIPT'
 apt-get update
 apt-get install -y --autoremove autoconf libtool build-essential \
   gdb automake valgrind git liblmdb-dev libpcre2-dev libpam0g-dev \
-  flex bison
+  flex bison librsync-dev
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
 chown vagrant /home/vagrant/.vimrc
+echo "set -o vi" >> /home/vagrant/.bashrc
+echo "export VISUAL=vim" >> /home/vagrant/.bashrc
+echo "export EDITOR="$VISUAL"" >> /home/vagrant/.bashrc
 SCRIPT
 
 Vagrant.configure(2) do |config|
