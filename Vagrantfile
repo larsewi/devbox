@@ -2,7 +2,7 @@ $script = <<-'SCRIPT'
 apt-get update
 apt-get install -y --autoremove autoconf libtool build-essential \
   gdb automake valgrind git liblmdb-dev libpcre2-dev libpam0g-dev \
-  flex bison librsync-dev
+  flex bison librsync-dev libyaml-dev libacl1-dev libxml2-dev
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
@@ -36,9 +36,10 @@ Vagrant.configure(2) do |config|
     hub.vm.provision "shell", inline: $script
   end
 
-  # config.vm.define "client" do |client|
-  #   client.vm.box = 'ubuntu/jammy64'
-  #   client.vm.hostname = "client"
-  #   client.vm.network "private_network", ip: "192.168.56.11"
-  # end
+  config.vm.define "cli" do |cli|
+    cli.vm.box = 'alvistack/ubuntu-24.04'
+    cli.vm.hostname = "cli"
+    cli.vm.network "private_network", ip: "192.168.56.11"
+    cli.vm.provision "shell", inline: $script
+  end
 end
