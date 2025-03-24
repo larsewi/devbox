@@ -3,7 +3,8 @@ apt-get update
 apt-get install -y --autoremove autoconf libtool build-essential \
   gdb automake valgrind git liblmdb-dev libpcre2-dev libpam0g-dev \
   flex bison librsync-dev libyaml-dev libacl1-dev libxml2-dev \
-  autoconf-archive pkg-config libssl-dev libpq-dev
+  autoconf-archive pkg-config libssl-dev libpq-dev libtool-bin \
+  libsystemd-dev
 cp -r /vagrant/dotfiles/.vim /home/vagrant/.vim
 chown vagrant /home/vagrant/.vim
 cp -R /vagrant/dotfiles/.vimrc /home/vagrant/.vimrc
@@ -15,11 +16,11 @@ SCRIPT
 
 Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
-    v.cpus = 4
-    v.memory = 4096
+    v.cpus = 8
+    v.memory = 8192
     v.gui = false
   end
-  config.vm.synced_folder '~/ntech/cfengine', '/ntech/cfengine'
+  config.vm.synced_folder '~/ntech', '/ntech'
 
   config.vm.provision "shell" do |s|
       ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_ed25519.pub").first.strip
